@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính Diện Tích Hình Chữ Nhật</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        .input-field {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .button {
+            width: 90%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .reset-button {
+            width: 90%;
+            padding: 12px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .reset-button:hover {
+            background-color: #e53935;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Tính Diện Tích Hình Chữ Nhật</h2>
+        <input type="text" id="length" class="input-field" placeholder="Nhập chiều dài (m)">
+        <input type="text" id="width" class="input-field" placeholder="Nhập chiều rộng (m)">
+        <button class="button" onclick="calculateArea()">Tính diện tích</button>
+        <button class="reset-button" onclick="resetForm()">Reset</button>
+        <div id="error-message" class="error"></div>
+        <div id="result" class="result"></div>
+        <p class="note">Chú ý: Các giá trị nhập vào phải là số dương.</p>
+    </div>
+
+    <script>
+        // Hàm tính diện tích
+        function calculateArea() {
+            const lengthInput = document.getElementById('length').value;
+            const widthInput = document.getElementById('width').value;
+            const errorMessage = document.getElementById('error-message');
+            const resultDiv = document.getElementById('result');
+
+            // Reset thông báo lỗi và kết quả
+            errorMessage.textContent = '';
+            resultDiv.textContent = '';
+
+            // Chuyển đổi thành số và kiểm tra tính hợp lệ
+            const length = parseFloat(lengthInput);
+            const width = parseFloat(widthInput);
+
+            if (isNaN(length) || isNaN(width)) {
+                errorMessage.textContent = 'Vui lòng nhập các giá trị hợp lệ cho chiều dài và chiều rộng!';
+                return;
+            }
+
+            if (length <= 0 || width <= 0) {
+                errorMessage.textContent = 'Chiều dài và chiều rộng phải là số dương!';
+                return;
+            }
+
+            // Tính diện tích
+            const area = length * width;
+            resultDiv.textContent = `Diện tích của hình chữ nhật là: ${area} m²`;
+        }
+
+        // Hàm reset form
+        function resetForm() {
+            document.getElementById('length').value = '';
+            document.getElementById('width').value = '';
+            document.getElementById('error-message').textContent = '';
+            document.getElementById('result').textContent = '';
+        }
+    </script>
+
+</body>
+
+</html>
